@@ -3,7 +3,7 @@
   "displayName": "Nat20 Prefixer",
   "description": "Adds up-to-date CSS vendor prefixes for cross-browser support (Autoprefixer + Browserslist).",
   "version": "0.1.0",
-  "publisher": "nat20",
+  "publisher": "AshotShahnazaryan",
   "repository": {
     "type": "git",
     "url": "https://github.com/shahnazaryan0330/nat20-prefixer.git"
