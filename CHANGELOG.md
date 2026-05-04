@@ -2,9 +2,9 @@
 
 ## 0.1.0
 
-Первый релиз в Visual Studio Marketplace.
+Initial release on the Visual Studio Marketplace.
 
-- Команды: добавить префиксы (файл / выделение), снять префиксы (файл / выделение).
-- Autoprefixer + Browserslist, поддержка CSS, SCSS, Less, PostCSS, Tailwind CSS.
-- Синхронизация `opacity` / `visibility` внутри `@keyframes`.
-- Опция сохранения с префиксами (`nat20Prefixer.prefixOnSave`).
+- Commands: add prefixes (file / selection), strip prefixes (file / selection).
+- Autoprefixer + Browserslist; CSS, SCSS, Less, PostCSS, Tailwind CSS.
+- `opacity` / `visibility` sync inside `@keyframes`.
+- Optional prefix-on-save (`nat20Prefixer.prefixOnSave`).

@@ -11,12 +11,14 @@ A **Visual Studio Code** and **Cursor** extension for up-to-date **CSS vendor pr
 
 ## Commands
 
-| Action | Scope |
-|--------|--------|
-| Add vendor prefixes | Whole file or selection |
-| Strip vendor prefixes | Whole file or selection |
+Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and search for **Nat20**.
 
-Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) and search for **Nat20** to see the exact command titles in your locale.
+| Command title |
+|---------------|
+| Nat20: Add vendor prefixes (file) |
+| Nat20: Add vendor prefixes (selection) |
+| Nat20: Strip vendor prefixes (file) |
+| Nat20: Strip vendor prefixes (selection) |
 
 ## Settings
 

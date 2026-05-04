@@ -1,7 +1,7 @@
 {
   "name": "nat20-prefixer",
   "displayName": "Nat20 Prefixer",
-  "description": "Добавляет актуальные вендорные префиксы CSS для кросс-браузерности (Autoprefixer + Browserslist).",
+  "description": "Adds up-to-date CSS vendor prefixes for cross-browser support (Autoprefixer + Browserslist).",
   "version": "0.1.0",
   "publisher": "nat20",
   "repository": {
@@ -52,19 +52,19 @@
     "commands": [
       {
         "command": "nat20-prefixer.prefixDocument",
-        "title": "Nat20: добавить префиксы в файл"
+        "title": "Nat20: Add vendor prefixes (file)"
       },
       {
         "command": "nat20-prefixer.prefixSelection",
-        "title": "Nat20: добавить префиксы в выделение"
+        "title": "Nat20: Add vendor prefixes (selection)"
       },
       {
         "command": "nat20-prefixer.stripPrefixesDocument",
-        "title": "Nat20: убрать вендорные префиксы в файле"
+        "title": "Nat20: Strip vendor prefixes (file)"
       },
       {
         "command": "nat20-prefixer.stripPrefixesSelection",
-        "title": "Nat20: убрать вендорные префиксы в выделении"
+        "title": "Nat20: Strip vendor prefixes (selection)"
       }
     ],
     "configuration": {
@@ -73,12 +73,12 @@
         "nat20Prefixer.browserslist": {
           "type": "string",
           "default": "> 0.5%, last 2 versions, Firefox ESR, not dead",
-          "description": "Запрос Browserslist для Autoprefixer (какие браузеры учитывать)."
+          "description": "Browserslist query passed to Autoprefixer (which browsers to target)."
         },
         "nat20Prefixer.prefixOnSave": {
           "type": "boolean",
           "default": false,
-          "description": "Автоматически добавлять префиксы при сохранении файла."
+          "description": "When enabled, add vendor prefixes automatically on file save."
         }
       }
     }

@@ -6,7 +6,7 @@ import postcssScss from "postcss-scss";
 import { postcssOpacityVisibility } from "./postcssOpacityVisibility";
 import { postcssStripPrefixes } from "./postcssStripPrefixes";
 
-/** Tailwind IntelliSense часто выставляет languageId `tailwindcss` вместо `css`. */
+/** Tailwind IntelliSense often sets languageId `tailwindcss` instead of `css`. */
 const SUPPORTED = new Set([
   "css",
   "scss",
@@ -126,9 +126,8 @@ async function prefixDocumentEdits(
 
 function unsupportedLanguageMessage(languageId: string): string {
   return (
-    "Nat20 Prefixer: поддерживаются CSS, SCSS, Less, PostCSS и Tailwind CSS " +
-    `(сейчас язык документа: «${languageId}»). Откройте палитру «Change Language Mode» ` +
-    "и при необходимости выберите CSS."
+    "Nat20 Prefixer: Only CSS, SCSS, Less, PostCSS, and Tailwind CSS are supported " +
+    `(current language: "${languageId}"). Use "Change Language Mode" if needed.`
   );
 }
 
@@ -137,7 +136,7 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.commands.registerCommand("nat20-prefixer.prefixDocument", async () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
-        vscode.window.showInformationMessage("Nat20 Prefixer: нет активного редактора.");
+        vscode.window.showInformationMessage("Nat20 Prefixer: No active editor.");
         return;
       }
       if (!isSupported(editor.document.languageId)) {
@@ -149,9 +148,9 @@ export function activate(context: vscode.ExtensionContext): void {
       const edits = await prefixDocumentEdits(editor.document);
       if (edits.length === 0) {
         vscode.window.showInformationMessage(
-          "Nat20 Prefixer: изменений нет — для текущего Browserslist префиксы не нужны, " +
-            "а `opacity` не 0/1, или правки `visibility` не нужны вне `@keyframes`. " +
-            "Можно проверить на `user-select` или ужесточить `nat20Prefixer.browserslist`."
+          "Nat20 Prefixer: No changes — for the current Browserslist no prefixes are needed, " +
+            "or opacity is not 0/1, or visibility tweaks are not applied outside @keyframes. " +
+            "Try a property such as user-select or tighten nat20Prefixer.browserslist."
         );
         return;
       }
@@ -162,11 +161,11 @@ export function activate(context: vscode.ExtensionContext): void {
       });
       if (!ok) {
         vscode.window.showWarningMessage(
-          "Nat20 Prefixer: редактор не применил правку (возможен конфликт версий или read-only)."
+          "Nat20 Prefixer: The editor did not apply the edit (possible version conflict or read-only file)."
         );
         return;
       }
-      vscode.window.setStatusBarMessage("Nat20 Prefixer: префиксы обновлены.", 2500);
+      vscode.window.setStatusBarMessage("Nat20 Prefixer: Prefixes updated.", 2500);
     })
   );
 
@@ -174,7 +173,7 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.commands.registerCommand("nat20-prefixer.prefixSelection", async () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
-        vscode.window.showInformationMessage("Nat20 Prefixer: нет активного редактора.");
+        vscode.window.showInformationMessage("Nat20 Prefixer: No active editor.");
         return;
       }
       if (!isSupported(editor.document.languageId)) {
@@ -186,7 +185,7 @@ export function activate(context: vscode.ExtensionContext): void {
       const sel = editor.selection;
       const chunk = editor.document.getText(sel);
       if (!chunk.trim()) {
-        vscode.window.showInformationMessage("Nat20 Prefixer: выделите фрагмент CSS.");
+        vscode.window.showInformationMessage("Nat20 Prefixer: Select a CSS fragment.");
         return;
       }
       let out: string;
@@ -199,16 +198,16 @@ export function activate(context: vscode.ExtensionContext): void {
       }
       if (out === chunk) {
         vscode.window.showInformationMessage(
-          "Nat20 Prefixer: для выделения изменений нет (префиксы / opacity→visibility только в @keyframes)."
+          "Nat20 Prefixer: No changes for the selection (prefixes / opacity→visibility only inside @keyframes)."
         );
         return;
       }
       const ok = await editor.edit((b) => b.replace(sel, out));
       if (!ok) {
-        vscode.window.showWarningMessage("Nat20 Prefixer: не удалось применить правку к выделению.");
+        vscode.window.showWarningMessage("Nat20 Prefixer: Could not apply the edit to the selection.");
         return;
       }
-      vscode.window.setStatusBarMessage("Nat20 Prefixer: выделение обновлено.", 2500);
+      vscode.window.setStatusBarMessage("Nat20 Prefixer: Selection updated.", 2500);
     })
   );
 
@@ -216,7 +215,7 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.commands.registerCommand("nat20-prefixer.stripPrefixesDocument", async () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
-        vscode.window.showInformationMessage("Nat20 Prefixer: нет активного редактора.");
+        vscode.window.showInformationMessage("Nat20 Prefixer: No active editor.");
         return;
       }
       if (!isSupported(editor.document.languageId)) {
@@ -228,7 +227,7 @@ export function activate(context: vscode.ExtensionContext): void {
       const edits = await stripPrefixesDocumentEdits(editor.document);
       if (edits.length === 0) {
         vscode.window.showInformationMessage(
-          "Nat20 Prefixer: нечего снимать — префиксов в именах свойств и @keyframes не найдено."
+          "Nat20 Prefixer: Nothing to strip — no prefixed property names or @keyframes found."
         );
         return;
       }
@@ -239,11 +238,11 @@ export function activate(context: vscode.ExtensionContext): void {
       });
       if (!ok) {
         vscode.window.showWarningMessage(
-          "Nat20 Prefixer: редактор не применил правку (возможен конфликт версий или read-only)."
+          "Nat20 Prefixer: The editor did not apply the edit (possible version conflict or read-only file)."
         );
         return;
       }
-      vscode.window.setStatusBarMessage("Nat20 Prefixer: префиксы сняты.", 2500);
+      vscode.window.setStatusBarMessage("Nat20 Prefixer: Prefixes stripped.", 2500);
     })
   );
 
@@ -251,7 +250,7 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.commands.registerCommand("nat20-prefixer.stripPrefixesSelection", async () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
-        vscode.window.showInformationMessage("Nat20 Prefixer: нет активного редактора.");
+        vscode.window.showInformationMessage("Nat20 Prefixer: No active editor.");
         return;
       }
       if (!isSupported(editor.document.languageId)) {
@@ -263,7 +262,7 @@ export function activate(context: vscode.ExtensionContext): void {
       const sel = editor.selection;
       const chunk = editor.document.getText(sel);
       if (!chunk.trim()) {
-        vscode.window.showInformationMessage("Nat20 Prefixer: выделите фрагмент CSS.");
+        vscode.window.showInformationMessage("Nat20 Prefixer: Select a CSS fragment.");
         return;
       }
       let out: string;
@@ -276,16 +275,16 @@ export function activate(context: vscode.ExtensionContext): void {
       }
       if (out === chunk) {
         vscode.window.showInformationMessage(
-          "Nat20 Prefixer: в выделении нечего снимать (нет префиксов в свойствах / @keyframes)."
+          "Nat20 Prefixer: Nothing to strip in the selection (no prefixed properties / @keyframes)."
         );
         return;
       }
       const ok = await editor.edit((b) => b.replace(sel, out));
       if (!ok) {
-        vscode.window.showWarningMessage("Nat20 Prefixer: не удалось применить правку к выделению.");
+        vscode.window.showWarningMessage("Nat20 Prefixer: Could not apply the edit to the selection.");
         return;
       }
-      vscode.window.setStatusBarMessage("Nat20 Prefixer: выделение: префиксы сняты.", 2500);
+      vscode.window.setStatusBarMessage("Nat20 Prefixer: Selection: prefixes stripped.", 2500);
     })
   );
 

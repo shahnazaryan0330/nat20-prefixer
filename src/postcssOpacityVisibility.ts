@@ -27,7 +27,7 @@ function stripImportant(value: string): { core: string; important: boolean } {
   return { core: value.trim(), important: false };
 }
 
-/** Только литералы 1 / 0 (и 100% / 0% как эквиваленты полной непрозрачности / полной прозрачности). */
+/** Only literal 1 / 0 (and 100% / 0% as full opacity / full transparency). */
 function classifyOpacity(core: string): "zero" | "one" | "other" {
   const v = core.trim().toLowerCase();
   if (/^(0(\.0+)?|0%)$/.test(v)) {
@@ -70,9 +70,9 @@ function sameVisibility(a: string, b: string): boolean {
 }
 
 /**
- * Только внутри `@keyframes` (и вендорных аналогов):
+ * Only inside `@keyframes` (and vendor-prefixed variants):
  * `opacity: 1` → `visibility: visible`, `opacity: 0` → `visibility: hidden`.
- * Учитываются только прямые свойства в блоке (без вложенных селекторов).
+ * Only direct declarations in a rule block (not nested selectors).
  */
 export const postcssOpacityVisibility: Plugin = {
   postcssPlugin: "postcss-opacity-visibility",

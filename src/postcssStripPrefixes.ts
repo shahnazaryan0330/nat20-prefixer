@@ -43,7 +43,7 @@ function hasUnprefixedBareSibling(
   return false;
 }
 
-/** Оставить последнее по порядку объявление с тем же именем свойства (без учёта регистра). */
+/** Keep the last declaration when duplicate property names appear (case-insensitive). */
 function dedupeDeclarationsInContainer(container: Container): void {
   const decls = directDeclarations(container);
   if (decls.length < 2) {
@@ -64,8 +64,8 @@ function dedupeDeclarationsInContainer(container: Container): void {
 }
 
 /**
- * Снимает `-webkit-` / `-moz-` / `-ms-` / `-o-` с имён свойств и с `@-*-keyframes`.
- * Дубли: если уже есть непрефиксное свойство — префиксное удаляется; иначе переименование и дедуп.
+ * Strips `-webkit-` / `-moz-` / `-ms-` / `-o-` from property names and `@-*-keyframes` at-rule names.
+ * If an unprefixed property already exists, the prefixed declaration is removed; otherwise rename and dedupe.
  */
 export const postcssStripPrefixes: Plugin = {
   postcssPlugin: "postcss-strip-prefixes",
