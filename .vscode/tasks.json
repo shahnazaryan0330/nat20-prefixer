@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "npm: compile",
+      "type": "shell",
+      "command": "node ./node_modules/typescript/lib/tsc.js -p ./",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": "$tsc",
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "silent" }
+    },
+    {
+      "label": "npm: watch",
+      "type": "shell",
+      "command": "node ./node_modules/typescript/lib/tsc.js -watch -p ./",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": "$tsc-watch",
+      "isBackground": true,
+      "group": "build",
+      "presentation": { "reveal": "silent" }
+    }
+  ]
+}

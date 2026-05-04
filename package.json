@@ -1,0 +1,105 @@
+{
+  "name": "nat20-prefixer",
+  "displayName": "Nat20 Prefixer",
+  "description": "Добавляет актуальные вендорные префиксы CSS для кросс-браузерности (Autoprefixer + Browserslist).",
+  "version": "0.1.0",
+  "publisher": "nat20",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shahn/nat20-prefixer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shahn/nat20-prefixer/issues"
+  },
+  "homepage": "https://github.com/shahn/nat20-prefixer#readme",
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "scss",
+    "less",
+    "postcss",
+    "tailwind",
+    "autoprefixer",
+    "browserslist",
+    "vendor prefix",
+    "prefixes",
+    "cross-browser"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Linters"
+  ],
+  "galleryBanner": {
+    "color": "#252526",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onLanguage:css",
+    "onLanguage:scss",
+    "onLanguage:less",
+    "onLanguage:postcss",
+    "onLanguage:tailwindcss",
+    "onCommand:nat20-prefixer.prefixDocument",
+    "onCommand:nat20-prefixer.prefixSelection",
+    "onCommand:nat20-prefixer.stripPrefixesDocument",
+    "onCommand:nat20-prefixer.stripPrefixesSelection"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "nat20-prefixer.prefixDocument",
+        "title": "Nat20: добавить префиксы в файл"
+      },
+      {
+        "command": "nat20-prefixer.prefixSelection",
+        "title": "Nat20: добавить префиксы в выделение"
+      },
+      {
+        "command": "nat20-prefixer.stripPrefixesDocument",
+        "title": "Nat20: убрать вендорные префиксы в файле"
+      },
+      {
+        "command": "nat20-prefixer.stripPrefixesSelection",
+        "title": "Nat20: убрать вендорные префиксы в выделении"
+      }
+    ],
+    "configuration": {
+      "title": "Nat20 Prefixer",
+      "properties": {
+        "nat20Prefixer.browserslist": {
+          "type": "string",
+          "default": "> 0.5%, last 2 versions, Firefox ESR, not dead",
+          "description": "Запрос Browserslist для Autoprefixer (какие браузеры учитывать)."
+        },
+        "nat20Prefixer.prefixOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Автоматически добавлять префиксы при сохранении файла."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "publish:marketplace": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "postcss-less": "^6.0.0",
+    "postcss-scss": "^4.0.9"
+  }
+}
