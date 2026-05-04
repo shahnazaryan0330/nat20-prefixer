@@ -29,17 +29,22 @@
 
 ## Git и GitHub
 
-Репозиторий задан в `package.json` как `https://github.com/shahn/nat20-prefixer.git`. Если у тебя **другой** логин или имя репозитория — поменяй поля `repository`, `bugs` и `homepage` в `package.json`.
+Исходники: [shahnazaryan0330/nat20-prefixer](https://github.com/shahnazaryan0330/nat20-prefixer) (`repository` / `bugs` / `homepage` в `package.json` совпадают с этим URL).
 
-После создания **пустого** репозитория на GitHub с таким же именем:
+Первый push в пустой репозиторий:
 
 ```bash
-git remote add origin https://github.com/shahn/nat20-prefixer.git
+git remote add origin https://github.com/shahnazaryan0330/nat20-prefixer.git
 git branch -M main
 git push -u origin main
 ```
 
-Если `git remote` уже добавлен с другим URL: `git remote set-url origin <новый-url>`.
+Если `origin` уже был добавлен с другим адресом:
+
+```bash
+git remote set-url origin https://github.com/shahnazaryan0330/nat20-prefixer.git
+git push -u origin main
+```
 
 ## Разработка
 

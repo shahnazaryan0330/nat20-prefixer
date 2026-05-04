@@ -6,12 +6,12 @@
   "publisher": "nat20",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shahn/nat20-prefixer.git"
+    "url": "https://github.com/shahnazaryan0330/nat20-prefixer.git"
   },
   "bugs": {
-    "url": "https://github.com/shahn/nat20-prefixer/issues"
+    "url": "https://github.com/shahnazaryan0330/nat20-prefixer/issues"
   },
-  "homepage": "https://github.com/shahn/nat20-prefixer#readme",
+  "homepage": "https://github.com/shahnazaryan0330/nat20-prefixer#readme",
   "license": "MIT",
   "keywords": [
     "css",
